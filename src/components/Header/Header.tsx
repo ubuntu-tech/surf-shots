@@ -1,0 +1,100 @@
+'use client'
+import Link from 'next/link'
+import { Logo } from '@/components/common/Logo'
+import { useState } from 'react'
+
+const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  return (
+    <header className="fixed w-full bg-white shadow-md sticky top-0 z-50">
+      <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
+        {/* Logo on the left */}
+        <div className="flex items-center">
+          <Link href="/">
+            <Logo className="hover:opacity-80 transition-opacity" />
+          </Link>
+        </div>
+
+        {/* Hamburger menu button for mobile */}
+        <button
+          className="md:hidden p-2"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            {isMenuOpen ? (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            ) : (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            )}
+          </svg>
+        </button>
+
+        {/* Navigation buttons - desktop */}
+        <div className="hidden md:flex items-center gap-6">
+          <Link 
+            href="/" 
+            className="text-gray-700 hover:text-gray-900 transition-colors"
+          >
+            Home
+          </Link>
+          <Link 
+            href="/login" 
+            className="text-gray-700 hover:text-gray-900 transition-colors"
+          >
+            Login
+          </Link>
+          <Link 
+            href="/signup" 
+            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors"
+          >
+            Sign Up
+          </Link>
+        </div>
+
+        {/* Mobile menu */}
+        <div
+          className={`${
+            isMenuOpen ? 'flex' : 'hidden'
+          } absolute top-16 left-0 right-0 flex-col bg-white border-t shadow-lg md:hidden`}
+        >
+          <Link 
+            href="/" 
+            className="px-4 py-3 text-gray-700 hover:bg-gray-100 transition-colors"
+          >
+            Home
+          </Link>
+          <Link 
+            href="/login" 
+            className="px-4 py-3 text-gray-700 hover:bg-gray-100 transition-colors"
+          >
+            Login
+          </Link>
+          <Link 
+            href="/signup" 
+            className="px-4 py-3 bg-blue-500 text-white hover:bg-blue-600 transition-colors"
+          >
+            Sign Up
+          </Link>
+        </div>
+      </nav>
+    </header>
+  )
+}
+
+export default Header
