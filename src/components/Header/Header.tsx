@@ -9,6 +9,9 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false)
 
+  console.log(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID)
+  console.log(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET)
+
   return (
     <header className="fixed w-full bg-white shadow-md sticky top-0 z-50">
       <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
