@@ -1,8 +1,9 @@
 'use client'
 
-import { useSession, signOut } from "next-auth/react"
+import { useSession } from "next-auth/react"
 import { useEffect, useRef, useState } from "react"
 import { UserMenu } from "../UserMenu"
+import Image from "next/image"
 
 function LoginButton({ onClick }: { onClick: () => void }) {
     const { data: session } = useSession()
@@ -27,7 +28,7 @@ function LoginButton({ onClick }: { onClick: () => void }) {
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
                     className="rounded-full overflow-hidden w-10 h-10 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
-                    <img 
+                    <Image 
                         src={session.user.image || '/default-avatar.png'} 
                         alt="Profile" 
                         className="w-full h-full object-cover"

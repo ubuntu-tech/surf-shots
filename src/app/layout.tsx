@@ -1,12 +1,8 @@
-'use client'
-
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Header } from "@/components/Header";
-import { ToastProvider } from "@/components/Toast";
-import SessionProvider from "@/components/providers/SessionProvider/SessionProvider";
-import PostHogProvider from "@/components/providers/PostHog/PostHogProvider";
+import MainProvider from "@/components/providers/main";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -19,7 +15,7 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-const metadata: Metadata = {
+export const metadata: Metadata = {
   title: "SurfShots | Find Your Surf Session Photos",
   description: "Discover and purchase your surf session photos from any beach, any time. The largest database of surf photography connecting surfers with professional photographers worldwide.",
   keywords: ["surf photos", "surf photography", "surf session photos", "beach photography", "action sports photography", "surfing pictures"],
@@ -57,14 +53,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-          <PostHogProvider>
-            <ToastProvider>
-              <SessionProvider>
-                <Header />
-                {children}
-              </SessionProvider>
-            </ToastProvider>
-          </PostHogProvider>
+        <MainProvider>
+          <Header />
+          {children}
+        </MainProvider>
       </body>
     </html>
   );

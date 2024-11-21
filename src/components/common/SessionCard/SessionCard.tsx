@@ -3,6 +3,7 @@
 import { UserAvatarsGroup } from "@/components/UserAvatarsGroup";
 import { SessionCardProps } from "./SessionCard.types";
 import { SessionActions } from "@/components/SessionActions";
+import Image from "next/image";
 
 const SessionCard = ({ 
   url,
@@ -19,7 +20,7 @@ const SessionCard = ({
   return (
     <article className="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer">
       <div className="relative h-48">
-        <img 
+        <Image 
           src={thumbnailUrl} 
           alt={`${photographerName}'s session`} 
           className="w-full h-full object-cover"
