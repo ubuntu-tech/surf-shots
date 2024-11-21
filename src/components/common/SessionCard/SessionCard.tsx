@@ -24,6 +24,8 @@ const SessionCard = ({
           src={thumbnailUrl} 
           alt={`${photographerName}'s session`} 
           className="w-full h-full object-cover"
+          width={100}
+          height={100}
         />
       </div>
       <div className="p-4">

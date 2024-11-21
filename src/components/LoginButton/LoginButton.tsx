@@ -32,6 +32,8 @@ function LoginButton({ onClick }: { onClick: () => void }) {
                         src={session.user.image || '/default-avatar.png'} 
                         alt="Profile" 
                         className="w-full h-full object-cover"
+                        width={100}
+                        height={100}
                     />
                 </button>
 

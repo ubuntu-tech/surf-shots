@@ -72,18 +72,14 @@ const Header = () => {
           >
             Home
           </Link>
-          <Link 
-            href="/login" 
-            className="px-4 py-3 text-gray-700 hover:bg-gray-100 transition-colors"
-          >
-            Login
-          </Link>
-          <Link 
-            href="/signup" 
-            className="px-4 py-3 bg-blue-500 text-white hover:bg-blue-600 transition-colors"
-          >
-            Sign Up
-          </Link>
+          <div className="px-4 py-3">
+            <LoginButton 
+              onClick={() => {
+                setIsSignUpModalOpen(true)
+                setIsMenuOpen(false)
+              }} 
+            />
+          </div>
         </div>
       </nav>
       <SignUpModal isOpen={isSignUpModalOpen} onClose={() => setIsSignUpModalOpen(false)} />

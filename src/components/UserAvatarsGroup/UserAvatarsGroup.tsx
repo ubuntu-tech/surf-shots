@@ -59,7 +59,8 @@ function UserAvatarsGroup({ users = MOCK_USERS, maxVisible = 3 }: UserAvatarsGro
           <Image
             src={user.profilePic}
             alt={user.name}
-            fill
+            width={100}
+            height={100}
             className="rounded-full object-cover"
           />
           {index === maxVisible && users.length > maxVisible + 1 && (
