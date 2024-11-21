@@ -11,6 +11,11 @@ const Header = () => {
 
   console.log(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID)
   console.log(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET)
+  console.log(process.env.NEXTAUTH_SECRET)
+  console.log(process.env.NEXTAUTH_URL)
+  console.log(process.env.NEXT_PUBLIC_POSTHOG_KEY)
+  console.log(process.env.NEXT_PUBLIC_POSTHOG_HOST)
+  console.log(process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY)
 
   return (
     <header className="fixed w-full bg-white shadow-md sticky top-0 z-50">
