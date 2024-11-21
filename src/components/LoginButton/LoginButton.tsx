@@ -23,7 +23,7 @@ function LoginButton({ onClick }: { onClick: () => void }) {
 
     if (session && session.user) {
         return (
-            <div className="relative" ref={menuRef}>
+            <div className="relative hidden md:block" ref={menuRef}>
                 <button 
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
                     className="rounded-full overflow-hidden w-10 h-10 focus:outline-none focus:ring-2 focus:ring-blue-500"
