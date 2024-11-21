@@ -3,4 +3,5 @@ export interface SessionCardProps {
     photographerName: string;
     location: string;
     date: string;
+    url: string;
 }

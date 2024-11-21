@@ -5,6 +5,7 @@ import { SessionCardProps } from "./SessionCard.types";
 import { SessionActions } from "@/components/SessionActions";
 
 const SessionCard = ({ 
+  url,
   thumbnailUrl, 
   photographerName, 
   location, 
@@ -40,6 +41,7 @@ const SessionCard = ({
           <SessionActions 
             onLikeChange={handleLikeChange}
             initialLiked={false}
+            url={url}
           />
           <UserAvatarsGroup />
         </div>

@@ -1,3 +1,5 @@
+'use client'
+import { usePathname } from "next/navigation";
 import SessionCard from "../common/SessionCard/SessionCard";
 
 const recentSessions = [
@@ -39,6 +41,8 @@ const recentSessions = [
   ];
 
 const RecentSessions = () => {
+  const pathname = usePathname()
+  
   return (
     <section className="px-4 md:px-6 lg:px-8 max-w-7xl mx-auto w-full">
     <h2 className="text-2xl font-semibold mb-8 mt-8">Recent Sessions</h2>
@@ -50,6 +54,7 @@ const RecentSessions = () => {
           photographerName={session.photographerName}
           location={session.location}
           date={session.date}
+          url={pathname}
         />
       ))}
       </div>
