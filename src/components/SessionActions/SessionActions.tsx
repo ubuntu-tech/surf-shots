@@ -1,6 +1,7 @@
 import { PiHeartLight, PiHeartFill, PiShareNetworkLight } from "react-icons/pi"
 import { useState } from "react"
 import { useToast } from "../Toast/ToastContext"
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 interface SessionActionsProps {
   onShare?: () => void;
@@ -17,6 +18,7 @@ function SessionActions({
 }: SessionActionsProps) {
   const [isLiked, setIsLiked] = useState(initialLiked)
   const { showToast } = useToast()
+  const showShareButton = useFeatureFlagEnabled('show-share-button')
 
   const handleLike = () => {
     const newLikedState = !isLiked
@@ -58,12 +60,14 @@ function SessionActions({
           <PiHeartLight className="w-5 h-5 text-gray-600" />
         )}
       </button>
-      <button 
-        onClick={handleShare}
-        className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+      {showShareButton && (
+        <button 
+          onClick={handleShare}
+          className="p-1 hover:bg-gray-100 rounded-full transition-colors"
       >
-        <PiShareNetworkLight className="w-5 h-5 text-gray-600" />
-      </button>
+          <PiShareNetworkLight className="w-5 h-5 text-gray-600" />
+        </button>
+      )}
     </div>
   )
 }
