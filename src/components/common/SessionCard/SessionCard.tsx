@@ -43,7 +43,6 @@ const SessionCard = ({
         </div>
         <div className="flex items-center justify-end mt-4">
           <SessionActions 
-            onShare={handleShare}
             onLikeChange={handleLikeChange}
             initialLiked={false}
           />
