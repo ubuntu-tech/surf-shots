@@ -10,11 +10,6 @@ const SessionCard = ({
   location, 
   date 
 }: SessionCardProps): JSX.Element => {
-  const handleShare = () => {
-    // Implement share functionality
-    console.log('Share clicked')
-  }
-
   const handleLikeChange = (isLiked: boolean) => {
     // Handle like state change
     console.log('Like state changed:', isLiked)

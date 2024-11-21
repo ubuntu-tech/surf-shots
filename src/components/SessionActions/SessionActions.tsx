@@ -13,7 +13,7 @@ function SessionActions({
   onShare, 
   initialLiked = false,
   onLikeChange,
-  url = window.location.href
+  url,
 }: SessionActionsProps) {
   const [isLiked, setIsLiked] = useState(initialLiked)
   const { showToast } = useToast()
@@ -41,7 +41,7 @@ function SessionActions({
         console.error('Share failed:', error)
       }
     } else {
-      await navigator.clipboard.writeText(url)
+      await navigator.clipboard.writeText(url || window.location.href)
       showToast('Link copied to clipboard')
     }
   }
