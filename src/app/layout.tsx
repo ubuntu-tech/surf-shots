@@ -1,9 +1,11 @@
+
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { ToastProvider } from "@/components/Toast";
 import PostHogProvider from "./providers/PostHog/PostHogProvider";
+import { SessionProvider } from "next-auth/react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -54,12 +56,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <PostHogProvider>
-          <ToastProvider>
-            <Header />
-            {children}
-          </ToastProvider>
-        </PostHogProvider>
+          <PostHogProvider>
+            <ToastProvider>
+              <Header />
+              {children}
+            </ToastProvider>
+          </PostHogProvider>
       </body>
     </html>
   );

@@ -2,10 +2,11 @@
 import Link from 'next/link'
 import { Logo } from '@/components/common/Logo'
 import { useState } from 'react'
+import { SignUpModal } from '../SignUpModal'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-
+  const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false)
   return (
     <header className="fixed w-full bg-white shadow-md sticky top-0 z-50">
       <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
@@ -59,12 +60,12 @@ const Header = () => {
           >
             Login
           </Link>
-          <Link 
-            href="/signup" 
+          <button 
+            onClick={() => setIsSignUpModalOpen(true)}
             className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors"
           >
             Sign Up
-          </Link>
+          </button>
         </div>
 
         {/* Mobile menu */}
@@ -93,6 +94,7 @@ const Header = () => {
           </Link>
         </div>
       </nav>
+      <SignUpModal isOpen={isSignUpModalOpen} onClose={() => setIsSignUpModalOpen(false)} />
     </header>
   )
 }
