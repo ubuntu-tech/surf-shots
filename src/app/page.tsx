@@ -1,4 +1,3 @@
-import SessionCard from "@/components/common/SessionCard/SessionCard";
 import { CoverSection } from "@/components/CoverSection";
 import { RecentSessions } from "@/components/RecentSessions";
 import Image from "next/image";
