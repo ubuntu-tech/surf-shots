@@ -18,10 +18,10 @@ const CoverSection = () => {
       <div className="relative h-full container mx-auto px-4">
         <div className="h-full flex flex-col items-center justify-center text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-white">
-            Where You Surf
+            Your Surf Shots
           </h1>
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-12">
-            We Shoot
+            Anywhere
           </h1>
           <SearchBar />
         </div>
