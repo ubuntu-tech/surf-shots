@@ -13,7 +13,7 @@ const Header = () => {
   console.log(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET)
   console.log(process.env.NEXTAUTH_SECRET)
   console.log(process.env.NEXTAUTH_URL)
-  console.log('nonpublic', process.env.NEXTAUTH_SECRET)
+  console.log('nonpublic', process.env)
   console.log('nonpublic', process.env.NEXTAUTH_URL)
   console.log(process.env.NEXT_PUBLIC_POSTHOG_KEY)
   console.log(process.env.NEXT_PUBLIC_POSTHOG_HOST)
