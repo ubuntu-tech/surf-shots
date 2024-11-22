@@ -15,6 +15,7 @@ datasource db {
 }
 
 model User {
+  @@map("users")
   id        String   @id @default(cuid())
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -27,6 +28,7 @@ model User {
 }
 
 model Session {
+  @@map("sessions")
   id        String   @id @default(cuid())
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
