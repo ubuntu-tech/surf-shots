@@ -37,4 +37,5 @@ model Session {
   userId    String   @map("user_id")
   photos_session     Json? @map("photos_session")
   user      User     @relation(fields: [userId], references: [id])
+  thumbnailUrl String @map("thumbnail_url")
 }
