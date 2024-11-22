@@ -6,6 +6,9 @@ export async function handler(req: NextRequest) {
     const session = await prisma.session.findUnique({
         where: {
             id: sessionId
+        },
+        include: {
+            user: true
         }
     })
 
@@ -13,7 +16,19 @@ export async function handler(req: NextRequest) {
         return NextResponse.json({ error: 'Session not found' }, { status: 404 })
     }
 
-    return NextResponse.json({ session })
+    
+    const photosSession = session.photos_session as { watermark: string[] }
+    const photos = photosSession.watermark
+
+    return NextResponse.json({ 
+        session: {
+            placeName: session.placeName,
+            photographerName: session.user.name,
+            date: session.createdAt.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' }),
+            thumbnailUrl: session.thumbnailUrl,
+            photos
+        }
+    })
 }
 
 export { handler as GET }

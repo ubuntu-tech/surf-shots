@@ -3,21 +3,27 @@
 import { usePathname } from "next/navigation";
 import SessionCard from "../common/SessionCard/SessionCard";
 import useSWR from 'swr'
-import { LoadingSpinner } from "../common/LoadingSpinner";
 import RecentSessionsSkeleton from "./RecentSessionsSkeleton";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
+type Session = {
+  id: string
+  placeName: string
+  photographerName: string
+  date: string
+  thumbnailUrl: string
+  photos: string[]
+}
+
 const RecentSessions = () => {
   const pathname = usePathname()
-  const { data, error, isLoading } = useSWR<{ sessions: any[] }>('/api/session/recent', fetcher)
+  const { data, error, isLoading } = useSWR<{ sessions: Session[] }>('/api/session/recent', fetcher)
 
   if (isLoading) {
     return <RecentSessionsSkeleton />
   }
   if (error) return <div>Error: {error.message}</div>
-
-  console.log(data)
 
   return (
     <section className="px-4 md:px-6 lg:px-8 max-w-7xl mx-auto w-full">
@@ -28,9 +34,9 @@ const RecentSessions = () => {
           key={session.id}
           thumbnailUrl={session.thumbnailUrl}
           photographerName={session.photographerName}
-          location={session.location}
+          location={session.placeName}
           date={session.date}
-          url={pathname}
+          url={pathname!}
           id={session.id}
         />
       ))}

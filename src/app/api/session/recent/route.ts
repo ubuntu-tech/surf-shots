@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma"
-import { NextRequest, NextResponse } from "next/server"
+import { NextResponse } from "next/server"
 
 export async function handler() {
     const sessions = await prisma.session.findMany({ orderBy: { createdAt: 'desc' }, take: 15, include: { user: true } })
@@ -8,7 +8,7 @@ export async function handler() {
             id: session.id,
             thumbnailUrl: session.thumbnailUrl,
             photographerName: session.user.name,
-            location: session.placeName,
+            placeName: session.placeName,
             date: session.createdAt.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' })
         }
     })
