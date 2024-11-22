@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { SignInButton } from '../SignInButton'
-
+import { signIn } from 'next-auth/react'
 interface SignUpModalProps {
   isOpen: boolean
   onClose: () => void
@@ -10,6 +10,12 @@ interface SignUpModalProps {
 const SignUpModal = ({ isOpen, onClose }: SignUpModalProps) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  //eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleSignUp = async (event: any) => {
+    event.preventDefault()
+    await signIn('credentials', { email, password })
+  }
 
   if (!isOpen) return null
 
@@ -60,6 +66,7 @@ const SignUpModal = ({ isOpen, onClose }: SignUpModalProps) => {
 
           <button
             type="submit"
+            onClick={handleSignUp}
             className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
             Register
