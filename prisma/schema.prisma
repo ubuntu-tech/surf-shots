@@ -23,4 +23,16 @@ model User {
   name      String? @map("name")
   password  String? @map("password")
   provider  String? @map("provider")
+  sessions  Session[]
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  expiresAt DateTime @map("expires_at")
+  placeName String? @map("place_name")
+  userId    String   @map("user_id")
+  photos_session     Json? @map("photos_session")
+  user      User     @relation(fields: [userId], references: [id])
 }

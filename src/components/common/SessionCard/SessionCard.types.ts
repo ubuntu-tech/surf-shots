@@ -4,4 +4,5 @@ export interface SessionCardProps {
     location: string;
     date: string;
     url: string;
+    id: string;
 }

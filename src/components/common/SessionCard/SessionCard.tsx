@@ -4,13 +4,15 @@ import { UserAvatarsGroup } from "@/components/UserAvatarsGroup";
 import { SessionCardProps } from "./SessionCard.types";
 import { SessionActions } from "@/components/SessionActions";
 import Image from "next/image";
+import Link from "next/link";
 
 const SessionCard = ({ 
   url,
   thumbnailUrl, 
   photographerName, 
   location, 
-  date 
+  date,
+  id
 }: SessionCardProps): JSX.Element => {
   const handleLikeChange = (isLiked: boolean) => {
     // Handle like state change
@@ -19,8 +21,9 @@ const SessionCard = ({
 
   return (
     <article className="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer">
-      <div className="relative h-48">
-        <Image 
+      <Link href={`/session/${id}`}>
+        <div className="relative h-48">
+          <Image 
           src={thumbnailUrl} 
           alt={`${photographerName}'s session`} 
           className="w-full h-full object-cover"
@@ -48,7 +51,8 @@ const SessionCard = ({
           />
           <UserAvatarsGroup />
         </div>
-      </div>
+        </div>
+      </Link>
     </article>
   );
 };

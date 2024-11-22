@@ -1,53 +1,29 @@
 'use client'
+
 import { usePathname } from "next/navigation";
 import SessionCard from "../common/SessionCard/SessionCard";
+import useSWR from 'swr'
+import { LoadingSpinner } from "../common/LoadingSpinner";
+import RecentSessionsSkeleton from "./RecentSessionsSkeleton";
 
-const recentSessions = [
-    {
-      id: '1',
-      thumbnailUrl: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f',
-      photographerName: 'João Silva',
-      location: 'Praia do Rosa, SC',
-      date: '15 Mar 2024'
-    },
-    {
-      id: '2',
-      thumbnailUrl: 'https://images.unsplash.com/photo-1455729552865-3658a5d39692',
-      photographerName: 'Maria Santos',
-      location: 'Fernando de Noronha, PE',
-      date: '14 Mar 2024'
-    },
-    {
-      id: '3',
-      thumbnailUrl: 'https://images.unsplash.com/photo-1516370873344-fb7c61054fa9?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      photographerName: 'Pedro Costa',
-      location: 'Maresias, SP',
-      date: '13 Mar 2024'
-    },
-    {
-      id: '4',
-      thumbnailUrl: 'https://images.unsplash.com/photo-1476574898132-040f50db0a01?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      photographerName: 'Pedro Costa',
-      location: 'Maresias, SP',
-      date: '13 Mar 2024'
-    },
-    {
-      id: '5',
-      thumbnailUrl: 'https://images.unsplash.com/photo-1505937059382-aab581fd88c8?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      photographerName: 'Pedro Costa',
-      location: 'Maresias, SP',
-      date: '13 Mar 2024'
-    }
-  ];
+const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
 const RecentSessions = () => {
   const pathname = usePathname()
-  
+  const { data, error, isLoading } = useSWR<{ sessions: any[] }>('/api/session/recent', fetcher)
+
+  if (isLoading) {
+    return <RecentSessionsSkeleton />
+  }
+  if (error) return <div>Error: {error.message}</div>
+
+  console.log(data)
+
   return (
     <section className="px-4 md:px-6 lg:px-8 max-w-7xl mx-auto w-full">
     <h2 className="text-2xl font-semibold mb-8 mt-8">Recent Sessions</h2>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {recentSessions.map((session) => (
+      {data?.sessions?.map((session) => (
         <SessionCard
           key={session.id}
           thumbnailUrl={session.thumbnailUrl}
@@ -55,6 +31,7 @@ const RecentSessions = () => {
           location={session.location}
           date={session.date}
           url={pathname}
+          id={session.id}
         />
       ))}
       </div>
