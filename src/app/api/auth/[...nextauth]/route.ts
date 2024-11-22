@@ -4,7 +4,7 @@ import prisma from "@/lib/prisma"
 import Credentials from "next-auth/providers/credentials"
 import bcrypt from 'bcrypt';
 import { ConsoleLogger } from 'aws-amplify/utils';
-const logger = new ConsoleLogger('auth');
+const logger = new ConsoleLogger('auteh');
 
 const authOptions = {
     providers: [
