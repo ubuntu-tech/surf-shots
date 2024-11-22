@@ -3,6 +3,8 @@ import GoogleProvider from "next-auth/providers/google"
 import prisma from "@/lib/prisma"
 import Credentials from "next-auth/providers/credentials"
 import bcrypt from 'bcrypt';
+import { ConsoleLogger } from 'aws-amplify/utils';
+const logger = new ConsoleLogger('auth');
 
 const authOptions = {
     providers: [
@@ -16,8 +18,10 @@ const authOptions = {
                 password: { label: 'Password', type: 'password' },
             },
             async authorize(credentials) {
+                logger.info('authorize', credentials)
                 try {
                     if (!credentials?.email || !credentials?.password) {
+                        logger.info('authorize', 'no email or password')
                         return null
                 }
 
@@ -27,16 +31,21 @@ const authOptions = {
                     }
                 })
 
+                logger.info('authorize', user)
+
                 if (user) {
                     if (!user.password) {
+                        logger.info('authorize', 'no password')
                         return null
                     }
 
                     const passwordsMatch = await bcrypt.compare(credentials.password, user.password);
                     if (passwordsMatch) {   
+                        logger.info('authorize', 'passwords match')
                         return user
                     }
                 } else if (!user) {
+                    logger.info('authorize', 'no user')
                     const hashedPassword = await bcrypt.hash(credentials.password, 10);
                     return await prisma.user.create({
                         data: {
@@ -49,7 +58,7 @@ const authOptions = {
                 }
                 return null
                 } catch (error) {
-                    console.log('error', error)
+                    logger.info('authorize', 'error', error)
                     return null
                 }
             },
@@ -78,10 +87,10 @@ const handler = NextAuth({
                         provider: account?.provider,
                     }
                 })
-                console.log('userCreated', userCreated)
+                logger.info('signIn', 'userCreated', userCreated)
                 return true
             } catch (error) {
-                console.log('error', error)
+                logger.info('signIn', 'error', error)
                 return false
             }
         }
