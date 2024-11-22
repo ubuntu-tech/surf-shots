@@ -1,14 +1,15 @@
 import SessionDetails from "@/components/SessionDetails/SessionDetails";
 
 interface SessionPageProps {
-    params: {
+    params: Promise<{
       id: string;
-    };
+    }>;
 }
 
 async function SessionPage({ params }: SessionPageProps) {
+    const id = (await params).id
     return (
-      <SessionDetails id={params.id} />
+      <SessionDetails id={id} />
     );
 }
 export default SessionPage

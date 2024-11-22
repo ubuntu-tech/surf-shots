@@ -1,7 +1,7 @@
 import prisma from "@/lib/prisma"
 import { NextRequest, NextResponse } from "next/server"
 
-export async function handler(req: NextRequest) {
+async function handler(req: NextRequest) {
     const sessionId = req.url?.split('/').pop()
     const session = await prisma.session.findUnique({
         where: {
