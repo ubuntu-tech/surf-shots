@@ -3,6 +3,7 @@
 import useSWR from 'swr'
 import Image from 'next/image'
 import { useState } from 'react'
+import { Gallery } from '../common/Gallery'
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
 type SessionDetailsProps = {
@@ -53,52 +54,7 @@ const SessionDetails = ({ id }: SessionDetailsProps) => {
                 </div>
             </div>
 
-            {/* Gallery Modal */}
-            {selectedImage && (
-                <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex flex-col">
-                    {/* Close button */}
-                    <button 
-                        className="absolute top-4 right-4 text-white text-xl p-2"
-                        onClick={() => setSelectedImage(null)}
-                    >
-                        ✕
-                    </button>
-
-                    {/* Main image */}
-                    <div className="flex-1 flex items-center justify-center p-4">
-                        <Image
-                            src={selectedImage}
-                            alt="Selected photo"
-                            className="max-h-[calc(100vh-150px)] object-contain"
-                            width={1920}
-                            height={1080}
-                        />
-                    </div>
-
-                    {/* Thumbnails */}
-                    <div className="h-[120px] bg-black bg-opacity-50">
-                        <div className="flex overflow-x-auto gap-2 p-4">
-                            {data?.session.photos.map((photo, index) => (
-                                <div 
-                                    key={index}
-                                    className={`flex-shrink-0 h-[100px] w-[133px] cursor-pointer ${
-                                        selectedImage === photo ? 'ring-2 ring-white' : ''
-                                    }`}
-                                >
-                                    <Image
-                                        src={photo}
-                                        alt={`Thumbnail ${index + 1}`}
-                                        className="h-full w-full object-cover"
-                                        width={133}
-                                        height={100}
-                                        onClick={() => setSelectedImage(photo)}
-                                    />
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            )}
+            <Gallery images={data?.session.photos || []} selectedImage={selectedImage} onClose={() => setSelectedImage(null)} onSelect={setSelectedImage} />
         </>
     )
 }

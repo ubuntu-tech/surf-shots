@@ -15,9 +15,9 @@ const Header = () => {
 
   return (
     <header className="fixed w-full bg-white shadow-md sticky top-0 z-50">
-      <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
+      <nav className="container mx-auto px-4 h-20 flex items-center justify-between">
         {/* Logo on the left */}
-        <div className="flex items-center">
+        <div className="flex items-center -ml-6">
           <Link href="/">
             <Logo className="hover:opacity-80 transition-opacity" />
           </Link>

@@ -1,0 +1,54 @@
+<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Camera outline -->
+  <path d="M50 55 h10 l3 -5 h24 l3 5 h10 v35 h-50 z" 
+        fill="#BEE3DB" 
+        opacity="0.5"
+        stroke="#1B4965"
+        stroke-width="2"/>
+  
+  <!-- Lens circle -->
+  <circle cx="75" cy="72" 
+          r="12" 
+          fill="none"
+          stroke="#F9BC60"
+          stroke-width="3"/>
+          
+  <!-- Dynamic wave coming from camera -->
+  <path d="M95 72 C120 72, 130 60, 150 60 S180 72, 200 72" 
+        stroke="#1B4965" 
+        stroke-width="12" 
+        stroke-linecap="round"
+        fill="none"/>
+  
+  <!-- SNAPLINE text -->
+  <text x="40" y="130" 
+        font-family="Montserrat, sans-serif" 
+        font-size="52" 
+        font-weight="700" 
+        fill="#1B4965"
+        letter-spacing="-1">
+    snap
+  </text>
+  <text x="155" y="130" 
+        font-family="Montserrat, sans-serif" 
+        font-size="52" 
+        font-weight="500" 
+        fill="#1B4965"
+        letter-spacing="-1">
+    line
+  </text>
+  
+  <!-- Dots separator -->
+  <circle cx="190" cy="145" r="2" fill="#FF6B6B"/>
+  <circle cx="200" cy="145" r="2" fill="#FF6B6B"/>
+  <circle cx="210" cy="145" r="2" fill="#FF6B6B"/>
+  
+  <!-- Tagline -->
+  <text x="42" y="160" 
+        font-family="Karla, sans-serif" 
+        font-size="14" 
+        fill="#555B6E"
+        letter-spacing="1">
+    CATCH YOUR WAVE, KEEP THE MOMENT
+  </text>
+</svg>

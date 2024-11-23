@@ -7,69 +7,56 @@ interface LogoProps {
 const Logo: FC<LogoProps> = ({ className = '' }) => {
   return (
     <svg 
-      width="140" 
-      height="40" 
-      viewBox="0 0 140 40" 
-      fill="none" 
+      className={`w-64 h-24 ${className}`}
+      viewBox="0 0 400 200" 
       xmlns="http://www.w3.org/2000/svg"
-      className={className}
+      preserveAspectRatio="xMidYMid meet"
     >
-      {/* Outer Lens Ring */}
-      <circle cx="20" cy="20" r="15" stroke="#0891B2" strokeWidth="2"/>
-      
-      {/* Inner Lens Circles */}
-      <circle cx="20" cy="20" r="12" stroke="#0891B2" strokeWidth="1"/>
-      <circle cx="20" cy="20" r="9" stroke="#0891B2" strokeWidth="1"/>
-      <circle cx="20" cy="20" r="6" stroke="#0891B2" strokeWidth="1"/>
-      
-      {/* Lens Reflection */}
-      <path 
-        d="M15 15 L17 17" 
-        stroke="#0891B2" 
-        strokeWidth="2" 
+      <path d="M50 55 h10 l3 -5 h24 l3 5 h10 v35 h-50 z" 
+        fill="#BEE3DB" 
+        opacity="0.5"
+        stroke="#1B4965"
+        strokeWidth="2"/>
+  
+      <circle cx="75" cy="72" 
+        r="12" 
+        fill="none"
+        stroke="#F9BC60"
+        strokeWidth="3"/>
+          
+      <path d="M95 72 C120 72, 130 60, 150 60 S180 72, 200 72" 
+        stroke="#1B4965" 
+        strokeWidth="12" 
         strokeLinecap="round"
-      />
-      <circle cx="16" cy="16" r="1" fill="#0891B2"/>
-      
-      {/* Aperture Blades */}
-      <path 
-        d="M20 8 C18 8, 16 9, 14 12" 
-        stroke="#0891B2" 
-        strokeWidth="1" 
-        fill="none"
-      />
-      <path 
-        d="M32 20 C32 18, 31 16, 28 14" 
-        stroke="#0891B2" 
-        strokeWidth="1" 
-        fill="none"
-      />
-      <path 
-        d="M20 32 C22 32, 24 31, 26 28" 
-        stroke="#0891B2" 
-        strokeWidth="1" 
-        fill="none"
-      />
-      
-      {/* Wave - Moved up by adjusting the Y coordinates from 20 to 17 */}
-      <path 
-        d="M45 17 C50 10, 55 10, 60 17 C65 24, 70 24, 75 17 C80 10, 85 10, 90 17" 
-        stroke="#0891B2" 
-        strokeWidth="2" 
-        fill="none"
-      />
-      
-      {/* Text */}
-      <text 
-        x="45" 
-        y="35" 
-        fontFamily="Arial" 
-        fontSize="12" 
-        fontWeight="bold" 
-        fill="#0891B2"
-        letterSpacing="0.5"
-      >
-        SURF SHOTS
+        fill="none"/>
+  
+      <text x="40" y="130" 
+        fontFamily="Montserrat, sans-serif" 
+        fontSize="52" 
+        fontWeight="700" 
+        fill="#1B4965"
+        letterSpacing="-1">
+        snap
+      </text>
+      <text x="155" y="130" 
+        fontFamily="Montserrat, sans-serif" 
+        fontSize="52" 
+        fontWeight="500" 
+        fill="#1B4965"
+        letterSpacing="-1">
+        line
+      </text>
+  
+      <circle cx="190" cy="145" r="2" fill="#FF6B6B"/>
+      <circle cx="200" cy="145" r="2" fill="#FF6B6B"/>
+      <circle cx="210" cy="145" r="2" fill="#FF6B6B"/>
+  
+      <text x="42" y="160" 
+        fontFamily="Karla, sans-serif" 
+        fontSize="14" 
+        fill="#555B6E"
+        letterSpacing="1">
+        CATCH YOUR WAVE, KEEP THE MOMENT
       </text>
     </svg>
   )

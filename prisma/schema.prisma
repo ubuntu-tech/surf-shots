@@ -25,6 +25,23 @@ model User {
   password  String? @map("password")
   provider  String? @map("provider")
   sessions  Session[]
+  profile   UserProfile[]
+}
+
+model UserProfile {
+  @@map("user_profiles")
+  id              String   @id @default(cuid())
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+  deletedAt       DateTime? @map("deleted_at")
+  userId          String   @map("user_id")
+  user            User     @relation(fields: [userId], references: [id])
+  profileImageUrl String @map("profile_image_url")
+  bio             String? @map("bio")
+  location        String? @map("location")
+  websiteUrl      String? @map("website_url")
+  birthday        DateTime? @map("birthday")
+  type            String @map("type")
 }
 
 model Session {

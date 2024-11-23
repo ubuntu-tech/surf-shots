@@ -16,19 +16,19 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "SurfShots | Find Your Surf Session Photos",
+  title: "SnapLine | Catch your wave, keep the moment",
   description: "Discover and purchase your surf session photos from any beach, any time. The largest database of surf photography connecting surfers with professional photographers worldwide.",
   keywords: ["surf photos", "surf photography", "surf session photos", "beach photography", "action sports photography", "surfing pictures"],
   openGraph: {
-    title: "SurfShots | Find Your Surf Session Photos",
+    title: "SnapLine | Catch your wave, keep the moment",
     description: "Find your surf session photos from any beach, any time. Connect with surf photographers worldwide.",
     type: "website",
     locale: "en_US",
-    siteName: "SurfShots"
+    siteName: "SnapLine"
   },
   twitter: {
     card: "summary_large_image",
-    title: "SurfShots | Your Surf Session Photos",
+    title: "SnapLine | Catch your wave, keep the moment",
     description: "Find your surf session photos from any beach, any time"
   },
   robots: {
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     follow: true
   },
   alternates: {
-    canonical: "https://surfshots.com"
+    canonical: "https://snapline.com"
   },
   other: {
     "google-site-verification": "your-verification-code"

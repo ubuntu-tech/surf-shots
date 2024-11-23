@@ -47,7 +47,7 @@ function LoginButton({ onClick }: { onClick: () => void }) {
             onClick={onClick}
             className="md:bg-blue-500 md:text-white md:px-4 py-2 rounded-md hover:bg-blue-600 transition-colors"
         >
-            Login
+            Sign up
         </button>
     )
 }
