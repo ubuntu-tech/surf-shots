@@ -12,17 +12,20 @@ const SessionCard = ({
   photographerName, 
   location, 
   date,
-  id
+  id,
+  size = 'small'
 }: SessionCardProps): JSX.Element => {
   const handleLikeChange = (isLiked: boolean) => {
     // Handle like state change
     console.log('Like state changed:', isLiked)
   }
 
+  const cardSizeHeight = size === 'small' ? 'h-48' : 'h-64'
+
   return (
     <article className="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer">
       <Link href={`/session/${id}`}>
-        <div className="relative h-48">
+        <div className={`relative ${cardSizeHeight}`}>
           <Image 
           src={thumbnailUrl} 
           alt={`${photographerName}'s session`} 

@@ -16,7 +16,7 @@ export const PlacesAutocomplete: React.FC<PlacesAutocompleteProps> = ({
   value,
   onChange,
   showLabel = true,
-  placeholder = 'Search for a location',
+  placeholder = 'Search by location',
 }) => {
 
   const [isFocused, setIsFocused] = useState(false)

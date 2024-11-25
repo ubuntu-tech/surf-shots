@@ -5,4 +5,5 @@ export interface SessionCardProps {
     date: string;
     url: string;
     id: string;
+    size?: 'small' | 'large';
 }
