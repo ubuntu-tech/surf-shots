@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Camera, Users, Waves, Award } from 'lucide-react'
-import { HeroBackground } from '@/components/HeroBackground'
 
 const AboutPage = () => {
   return (
@@ -23,7 +22,7 @@ const AboutPage = () => {
             Connecting Waves <br />with Stories
           </h1>
           <p className="text-xl text-seaFoam font-secondary max-w-2xl">
-            Where perfect moments meet their perfect audience. We're building the bridge between surf photographers and wave riders.
+            Where perfect moments meet their perfect audience. We&apos;re building the bridge between surf photographers and wave riders.
           </p>
         </div>
       </section>
@@ -37,7 +36,7 @@ const AboutPage = () => {
                 Our Mission
               </h2>
               <p className="text-slate font-secondary text-lg mb-6">
-                At Snapline, we believe every perfect wave deserves to be captured and shared. We're here to empower photographers and surfers alike, creating a marketplace where ocean moments become lasting memories.
+                At Snapline, we believe every perfect wave deserves to be captured and shared. We&apos;re here to empower photographers and surfers alike, creating a marketplace where ocean moments become lasting memories.
               </p>
               <Link 
                 href="/discover"
@@ -120,20 +119,20 @@ const AboutPage = () => {
             Join the Lineup
           </h2>
           <p className="text-seaFoam font-secondary text-lg mb-8 max-w-2xl mx-auto">
-            Whether you're capturing waves or riding them, Snapline is your platform to connect, share, and celebrate the surf community.
+            Whether you&apos;re capturing waves or riding them, Snapline is your platform to connect, share, and celebrate the surf community.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
               href="/photographers"
               className="px-6 py-3 bg-sunsetGold text-white font-primary font-semibold rounded-lg hover:bg-sunsetGold/90 transition-all duration-200"
             >
-              I'm a Photographer
+              I&apos;m a Photographer
             </Link>
             <Link 
               href="/discover"
               className="px-6 py-3 bg-white text-oceanBlue font-primary font-semibold rounded-lg hover:bg-seaFoam transition-all duration-200"
             >
-              I'm a Surfer
+              I&apos;m a Surfer
             </Link>
           </div>
         </div>

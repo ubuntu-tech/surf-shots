@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Search, Filter, X, MapPin, Calendar, ArrowUpDown, ChevronDown } from 'lucide-react'
+import { X, ArrowUpDown, ChevronDown } from 'lucide-react'
 
 type SortOption = {
   value: 'newest' | 'oldest' | 'price-high' | 'price-low'

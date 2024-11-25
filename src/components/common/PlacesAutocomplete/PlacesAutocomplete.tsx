@@ -1,9 +1,8 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Combobox } from '@headlessui/react'
 import usePlacesAutocomplete from 'use-places-autocomplete'
-import { useLoadScript } from '@react-google-maps/api'
 
 interface PlacesAutocompleteProps {
   value: string
@@ -21,10 +20,8 @@ export const PlacesAutocomplete: React.FC<PlacesAutocompleteProps> = ({
 
   const [isFocused, setIsFocused] = useState(false)
   const {
-    ready,
     suggestions: { status, data },
     setValue: setSearchValue,
-    clearSuggestions,
   } = usePlacesAutocomplete({
     requestOptions: { 
         componentRestrictions: { country: "br" }, 

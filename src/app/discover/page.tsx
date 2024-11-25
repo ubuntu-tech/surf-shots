@@ -19,11 +19,10 @@ interface Session {
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
 const DiscoverPage = () => {
-  const [selectedFilter, setSelectedFilter] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
   const pathname = usePathname()
 
-  const { data, error, isLoading } = useSWR<{ sessions: Session[] }>('/api/session/recent', fetcher)
+  const { data, } = useSWR<{ sessions: Session[] }>('/api/session/recent', fetcher)
 
   return (
     <main className="min-h-screen bg-white">
