@@ -3,16 +3,17 @@ import Image from "next/image"
 
 type ProfileImageProps = {
   onClick: () => void
+  className?: string
 }
 
-const ProfileImage = ({ onClick }: ProfileImageProps) => {
+const ProfileImage = ({ onClick, className }: ProfileImageProps) => {
   const { data: session } = useSession()
 
   return (
     <button
-    className="md:hidden p-2"
-    onClick={onClick}
-  >
+      className={`md:hidden p-2 ${className}`}
+      onClick={onClick}
+    >
     {session?.user?.image ? (
       <Image
         src={session.user.image}

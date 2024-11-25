@@ -9,6 +9,7 @@ interface PlacesAutocompleteProps {
   onChange: (address: string) => void
   showLabel?: boolean
   placeholder?: string
+  className?: string
 }
 
 export const PlacesAutocomplete: React.FC<PlacesAutocompleteProps> = ({
@@ -16,6 +17,7 @@ export const PlacesAutocomplete: React.FC<PlacesAutocompleteProps> = ({
   onChange,
   showLabel = true,
   placeholder = 'Search by location',
+  className,
 }) => {
 
   const [isFocused, setIsFocused] = useState(false)
@@ -32,7 +34,7 @@ export const PlacesAutocomplete: React.FC<PlacesAutocompleteProps> = ({
 
   return (
     <Combobox value={value} onChange={onChange}>
-      <div className="relative">
+      <div className={`relative ${className}`}>
         <Combobox.Input
           className={`
             peer w-full px-4 py-3 rounded-md border border-gray-300

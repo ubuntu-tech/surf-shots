@@ -3,11 +3,12 @@ import { SignUpButton } from '../../SignUpButton'
 interface HeaderActionsProps {
   onSignUpClick: () => void
   onLoginClick: () => void
+  className?: string
 }
 
-const HeaderActions = ({ onSignUpClick, onLoginClick }: HeaderActionsProps) => {
+const HeaderActions = ({ onSignUpClick, onLoginClick, className }: HeaderActionsProps) => {
   return (
-    <div className="hidden md:flex items-center gap-6">
+    <div className={`hidden md:flex items-center gap-6 ${className}`}>
       <SignUpButton onClick={onSignUpClick} />
 
       <button 

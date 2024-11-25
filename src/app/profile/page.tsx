@@ -65,14 +65,6 @@ export default function ProfilePage() {
         }
       })
 
-      const response = await fetch('/api/profile', {
-        method: 'PUT',
-        body: formData,
-      })
-
-      if (response.ok) {
-        setIsEditing(false)
-      }
     } catch (error) {
       console.error('Failed to update profile:', error)
     }
