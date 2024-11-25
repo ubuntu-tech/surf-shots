@@ -7,7 +7,7 @@ interface LogoProps {
 const Logo: FC<LogoProps> = ({ className = '' }) => {
   return (
     <svg 
-      className={`w-64 h-24 ${className}`}
+      className={`w-48 h-16 ${className}`}
       viewBox="0 0 400 200" 
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMidYMid meet"
@@ -47,7 +47,7 @@ const Logo: FC<LogoProps> = ({ className = '' }) => {
         line
       </text>
   
-      <circle cx="190" cy="145" r="2" fill="#FF6B6B"/>
+      {/* <circle cx="190" cy="145" r="2" fill="#FF6B6B"/>
       <circle cx="200" cy="145" r="2" fill="#FF6B6B"/>
       <circle cx="210" cy="145" r="2" fill="#FF6B6B"/>
   
@@ -57,7 +57,7 @@ const Logo: FC<LogoProps> = ({ className = '' }) => {
         fill="#555B6E"
         letterSpacing="1">
         CATCH YOUR WAVE, KEEP THE MOMENT
-      </text>
+      </text> */}
     </svg>
   )
 }

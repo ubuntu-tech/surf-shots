@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react"
 import { UserMenu } from "../UserMenu"
 import Image from "next/image"
 
-function LoginButton({ onClick }: { onClick: () => void }) {
+function SignUpButton({ onClick }: { onClick: () => void }) {
     const { data: session } = useSession()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const menuRef = useRef<HTMLDivElement>(null)  // Add ref for the menu container
@@ -43,13 +43,10 @@ function LoginButton({ onClick }: { onClick: () => void }) {
     }
 
     return (
-        <button 
-            onClick={onClick}
-            className="md:bg-blue-500 md:text-white md:px-4 py-2 rounded-md hover:bg-blue-600 transition-colors"
-        >
+        <button onClick={onClick}>
             Sign up
         </button>
     )
 }
 
-export default LoginButton
+export default SignUpButton

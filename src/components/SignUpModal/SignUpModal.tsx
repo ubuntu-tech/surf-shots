@@ -1,15 +1,26 @@
 'use client'
 import { useState } from 'react'
-import { SignInButton } from '../SignInButton'
+import { GoogleSignInButton } from '../GoogleSignInButton'
 import { signIn } from 'next-auth/react'
 interface SignUpModalProps {
   isOpen: boolean
   onClose: () => void
+  variant: 'signup' | 'signin'
 }
 
-const SignUpModal = ({ isOpen, onClose }: SignUpModalProps) => {
+const SignUpModal = ({ isOpen, onClose, variant }: SignUpModalProps) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const labels = {
+    signup: {
+      title: 'Sign Up',
+      button: 'Register'
+    },
+    signin: {
+      title: 'Sign In',
+      button: 'Sign In'
+    }
+  }
 
   //eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSignUp = async (event: any) => {
@@ -23,7 +34,7 @@ const SignUpModal = ({ isOpen, onClose }: SignUpModalProps) => {
       <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
         <div className="bg-white rounded-xl p-8 w-full max-w-md shadow-2xl">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold text-gray-900">Sign Up</h2>
+          <h2 className="text-2xl font-bold text-gray-900">{labels[variant].title}</h2>
           <button 
             onClick={onClose} 
             className="text-gray-500 hover:text-gray-700 transition-colors"
@@ -69,7 +80,7 @@ const SignUpModal = ({ isOpen, onClose }: SignUpModalProps) => {
             onClick={handleSignUp}
             className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
-            Register
+            {labels[variant].button}
           </button>
 
           <div className="relative py-4">
@@ -81,7 +92,7 @@ const SignUpModal = ({ isOpen, onClose }: SignUpModalProps) => {
             </div>
           </div>
 
-          <SignInButton />
+          <GoogleSignInButton />
         </form>
       </div>
       </div>
