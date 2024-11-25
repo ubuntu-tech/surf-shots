@@ -6,6 +6,25 @@ import bcrypt from 'bcrypt';
 import { ConsoleLogger } from 'aws-amplify/utils';
 const logger = new ConsoleLogger('auteh');
 
+const saveUserProfile = async (userId: string, type: string, profileImageUrl: string | null) => {
+    const userProfile = await prisma.userProfile.findFirst({
+        where: {
+            userId: userId
+        }
+    })
+    if (!userProfile) {
+        await prisma.userProfile.create({
+            data: {
+                userId: userId,
+                createdAt: new Date(),
+                updatedAt: new Date(),
+                type: type,
+                profileImageUrl: profileImageUrl || '/default-profile.png',
+            }
+        })
+    }
+}
+
 const authOptions = {
     providers: [
         GoogleProvider({
@@ -77,23 +96,7 @@ const handler = NextAuth({
                     }
                 })
                 if (existingUser) {
-                    const userProfile = await prisma.userProfile.findFirst({
-                        where: {
-                            userId: existingUser.id
-                        }
-                    })
-                    
-                    if (!userProfile) {
-                        await prisma.userProfile.create({
-                            data: {
-                                userId: existingUser.id,
-                                createdAt: new Date(),
-                                updatedAt: new Date(),
-                                type: 'photographer',
-                                profileImageUrl: user.image || '/default-profile.png',
-                            }
-                        })
-                    }
+                    wait saveUserProfile(existingUser.id, 'photographer', user.image)
                     return true
                 }
 
