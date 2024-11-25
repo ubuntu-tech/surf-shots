@@ -98,7 +98,7 @@ export default function ProfilePage() {
                 <button
                   type="button"
                   onClick={() => document.getElementById('profile-upload')?.click()}
-                  className="relative w-20 h-20 rounded-full overflow-hidden group hover:opacity-90 focus:outline-none"
+                  className="relative w-20 h-16 rounded-full overflow-hidden group hover:opacity-90 focus:outline-none"
                 >
                   {profile.imagePreview ? (
                     <Image

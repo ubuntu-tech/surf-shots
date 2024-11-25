@@ -5,10 +5,10 @@ import { useEffect, useRef, useState } from "react"
 import { UserMenu } from "../UserMenu"
 import Image from "next/image"
 
-function SignUpButton({ onClick }: { onClick: () => void }) {
+function SignUpButton({ onClick, className = '' }: { onClick: () => void, className?: string }) {
     const { data: session } = useSession()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
-    const menuRef = useRef<HTMLDivElement>(null)  // Add ref for the menu container
+    const menuRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
@@ -21,12 +21,12 @@ function SignUpButton({ onClick }: { onClick: () => void }) {
         return () => document.removeEventListener('mousedown', handleClickOutside)
     }, [])
 
-    if (session && session.user) {
+    if (session?.user) {
         return (
-            <div className="relative hidden md:block" ref={menuRef}>
+            <div className={`relative ${className}`} ref={menuRef}>
                 <button 
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    className="rounded-full overflow-hidden w-10 h-10 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="rounded-full overflow-hidden w-10 h-10 focus:outline-none focus:ring-2 focus:ring-oceanBlue border-2 border-seaFoam hover:border-oceanBlue transition-colors"
                 >
                     <Image 
                         src={session.user.image || '/default-avatar.png'} 
@@ -43,8 +43,11 @@ function SignUpButton({ onClick }: { onClick: () => void }) {
     }
 
     return (
-        <button onClick={onClick}>
-            Sign up
+        <button 
+            onClick={onClick}
+            className={`px-6 py-2 bg-sunsetGold text-white hover:bg-sunsetGold/90 font-primary font-semibold rounded-lg transition-all duration-200 hover:shadow-md ${className}`}
+        >
+            Join the Lineup
         </button>
     )
 }

@@ -9,8 +9,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        oceanBlue: '#1B4965',
+        seaFoam: '#BEE3DB',
+        sunsetGold: '#F9BC60',
+        coral: '#FF6B6B',
+        slate: '#555B6E',
+      },
+      fontFamily: {
+        primary: ['Montserrat', 'sans-serif'],
+        secondary: ['Karla', 'sans-serif'],
       },
     },
   },
