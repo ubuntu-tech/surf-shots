@@ -96,7 +96,7 @@ const handler = NextAuth({
                     }
                 })
                 if (existingUser) {
-                    wait saveUserProfile(existingUser.id, 'photographer', user.image)
+                    await saveUserProfile(existingUser.id, 'photographer', user.image)
                     return true
                 }
 
