@@ -77,6 +77,23 @@ const handler = NextAuth({
                     }
                 })
                 if (existingUser) {
+                    const userProfile = await prisma.userProfile.findFirst({
+                        where: {
+                            userId: existingUser.id
+                        }
+                    })
+                    
+                    if (!userProfile) {
+                        await prisma.userProfile.create({
+                            data: {
+                                userId: existingUser.id,
+                                createdAt: new Date(),
+                                updatedAt: new Date(),
+                                type: 'photographer',
+                                profileImageUrl: user.image || '/default-profile.png',
+                            }
+                        })
+                    }
                     return true
                 }
 
