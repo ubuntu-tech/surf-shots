@@ -1,7 +1,5 @@
 'use client'
 
-import { useState } from 'react'
-import { Search } from 'lucide-react'
 import { FiltersSection } from '@/components/FiltersSection'
 import useSWR from 'swr'
 import { SessionCard } from '@/components/common/SessionCard'
@@ -20,7 +18,6 @@ interface Session {
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
 const DiscoverPage = () => {
-  const [searchQuery, setSearchQuery] = useState('')
   const pathname = usePathname()
 
   const { data, } = useSWR<{ sessions: Session[] }>('/api/session/recent', fetcher)
