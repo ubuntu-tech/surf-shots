@@ -38,7 +38,7 @@ export const PlacesAutocomplete: React.FC<PlacesAutocompleteProps> = ({
   }))
 
   return (
-    <Combobox value={value} onChange={onChange}>
+    <Combobox value={value} onChange={onChange} style={{ zIndex: 100 }}>
       <div className={`relative ${className}`}>
         <Combobox.Input
           className={`
@@ -69,14 +69,14 @@ export const PlacesAutocomplete: React.FC<PlacesAutocompleteProps> = ({
             Location
           </label>
         )}
-        <Combobox.Options className="absolute z-10 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base overflow-auto">
+        <Combobox.Options className="absolute z-10 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base overflow-auto z-100">
           {status === 'OK' &&
             formattedPlaces.map(({ place_id, description }) => (
               <Combobox.Option
                 key={place_id}
                 value={description}
                 className={({ active }) =>
-                  `relative cursor-default select-none py-2 pl-3 pr-9 ${
+                  `relative cursor-default select-none py-2 pl-3 pr-9 z-100 ${
                     active ? 'bg-blue-600 text-white' : 'text-gray-900'
                   }`
                 }

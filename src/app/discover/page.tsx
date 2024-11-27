@@ -6,6 +6,7 @@ import { FiltersSection } from '@/components/FiltersSection'
 import useSWR from 'swr'
 import { SessionCard } from '@/components/common/SessionCard'
 import { usePathname } from 'next/navigation'
+import { SearchBar } from '@/components/SearchBar'
 
 // Types
 interface Session {
@@ -27,24 +28,14 @@ const DiscoverPage = () => {
   return (
     <main className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative bg-oceanBlue py-16">
+      <section className="relative bg-oceanBlue py-16 bg-[url('https://images.unsplash.com/photo-1503888162233-e16bea2cef78?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-center bg-no-repeat">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold text-white font-primary mb-6 text-center">
+          <h1 className="text-4xl font-bold text-white font-primary mb-6 text-center pt-16">
             Discover Your Perfect Wave
           </h1>
-          
-          {/* Search Bar */}
-          <div className="max-w-2xl mx-auto relative">
-            <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-              <Search className="h-5 w-5 text-slate" />
-            </div>
-            <input
-              type="text"
-              placeholder="Search by location, photographer, or style..."
-              className="w-full pl-12 pr-4 py-3 rounded-lg border border-seaFoam bg-white font-secondary focus:ring-2 focus:ring-sunsetGold focus:border-transparent outline-none"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
+
+          <div className="max-w-2xl mx-auto relative mb-8">
+            <SearchBar />
           </div>
         </div>
       </section>

@@ -38,7 +38,7 @@ const SortDropdown = ({
       {isOpen && (
         <>
           <div 
-            className="fixed inset-0 z-40"
+            className="fixed inset-0"
             onClick={() => setIsOpen(false)}
           />
           
