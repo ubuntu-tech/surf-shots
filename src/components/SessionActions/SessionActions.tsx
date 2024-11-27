@@ -20,13 +20,15 @@ function SessionActions({
   const { showToast } = useToast()
   const showShareButton = useFeatureFlagEnabled('show-share-button')
 
-  const handleLike = () => {
+  const handleLike = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
     const newLikedState = !isLiked
     setIsLiked(newLikedState)
     onLikeChange?.(newLikedState)
   }
 
-  const handleShare = async () => {
+  const handleShare = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
     if (onShare) {
       onShare()
       return

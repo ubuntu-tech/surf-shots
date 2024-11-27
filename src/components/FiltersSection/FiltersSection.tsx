@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { X, ArrowUpDown, ChevronDown } from 'lucide-react'
+import { X, ArrowUpDown, ChevronDown, Calendar } from 'lucide-react'
 
 type SortOption = {
   value: 'newest' | 'oldest' | 'price-high' | 'price-low'
@@ -82,16 +82,17 @@ const FiltersSection = () => {
           <div className="flex items-center gap-4">
             {/* Date Range Input */}
             <div className="flex items-center gap-2">
-              <div className="flex items-center gap-2">
+              <div className="relative flex items-center">
+                <Calendar className="absolute left-3 w-4 h-4 text-slate" />
                 <input
                   type="date"
                   value={dateRange.from}
                   onChange={(e) => onDateRangeChange({ ...dateRange, from: e.target.value })}
-                  className="px-3 py-2 rounded-lg border border-seaFoam focus:ring-2 focus:ring-oceanBlue focus:border-transparent transition-all outline-none font-secondary"
+                  className="pl-10 pr-3 py-2 rounded-lg border border-seaFoam focus:ring-2 focus:ring-oceanBlue focus:border-transparent transition-all outline-none font-secondary [&::-webkit-calendar-picker-indicator]:opacity-0 [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:left-0 [&::-webkit-calendar-picker-indicator]:w-full [&::-webkit-calendar-picker-indicator]:h-full [&::-webkit-calendar-picker-indicator]:cursor-pointer"
                 />
               </div>
               
-              {(dateRange.from || dateRange.to) && (
+              {dateRange.from && (
                 <button
                   onClick={() => onDateRangeChange({ from: '', to: '' })}
                   className="hover:text-coral transition-colors p-2"

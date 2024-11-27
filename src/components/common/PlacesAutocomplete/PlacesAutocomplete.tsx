@@ -32,6 +32,11 @@ export const PlacesAutocomplete: React.FC<PlacesAutocompleteProps> = ({
     defaultValue: value,
   })
 
+  const formattedPlaces = data.map(({ place_id, terms }) => ({
+    place_id,
+    description: `${terms[0].value}, ${terms[1].value}`,
+  }))
+
   return (
     <Combobox value={value} onChange={onChange}>
       <div className={`relative ${className}`}>
@@ -66,7 +71,7 @@ export const PlacesAutocomplete: React.FC<PlacesAutocompleteProps> = ({
         )}
         <Combobox.Options className="absolute z-10 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base overflow-auto">
           {status === 'OK' &&
-            data.map(({ place_id, description }) => (
+            formattedPlaces.map(({ place_id, description }) => (
               <Combobox.Option
                 key={place_id}
                 value={description}
