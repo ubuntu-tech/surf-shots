@@ -1,5 +1,6 @@
 import { signOut } from "next-auth/react"
 import { useSession } from "next-auth/react"
+import Link from "next/link";
 interface UserMenuProps {
     isOpen: boolean;
 }
@@ -7,20 +8,20 @@ interface UserMenuProps {
 function UserMenu({ isOpen }: UserMenuProps) {
     const { data: session } = useSession()
 
-    if (!isOpen) return null;
-    
+    if (!isOpen || !session?.user.role) return null;
+        
     return (
         <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
-            <a href="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+            <Link href="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                 Profile
-            </a>
-            <a href="/my-photos" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+            </Link>
+            <Link href="/my-photos" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                 My Photos
-            </a>
+            </Link>
             {session?.user?.role === 'photographer' && (
-                <a href="/session/new" className="block px-4 py-2 text-sm text-white bg-sunsetGold hover:bg-sunsetGold/90">
+                <Link href="/session/new" className="block px-4 py-2 text-sm text-white bg-sunsetGold hover:bg-sunsetGold/90">
                     New Session
-                </a>
+                </Link>
             )}
             <hr className="my-1 border-gray-200" />
             <button 

@@ -41,17 +41,17 @@ const Gallery = ({ selectedImage, images, onClose, onSelect }: GalleryProps) => 
     const hasNext = currentIndex < images.length - 1
     const hasPrev = currentIndex > 0
 
-    const handleNext = () => {
+    const handleNext = useCallback(() => {
         if (hasNext) {
             onSelect(images[currentIndex + 1])
         }
-    }
+    }, [hasNext, images, currentIndex, onSelect])
 
-    const handlePrev = () => {
+    const handlePrev = useCallback(() => {
         if (hasPrev) {
             onSelect(images[currentIndex - 1])
         }
-    }
+    }, [hasPrev, images, currentIndex, onSelect])
 
     // Add keyboard navigation
     useEffect(() => {

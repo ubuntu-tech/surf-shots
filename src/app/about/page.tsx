@@ -42,7 +42,7 @@ const AboutPage = () => {
                 href="/discover"
                 className="inline-flex items-center px-6 py-3 bg-sunsetGold text-white font-primary font-semibold rounded-lg hover:bg-sunsetGold/90 transition-all duration-200"
               >
-                Discover Shots
+                Discover
               </Link>
             </div>
             <div className="relative h-[400px]">

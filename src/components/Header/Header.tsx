@@ -43,7 +43,7 @@ const Header = () => {
         {/* Desktop Navigation - Added to match brand style */}
         <div className="hidden md:flex items-center space-x-8 font-secondary text-slate">
           <Link href="/discover" className="hover:text-oceanBlue transition-colors">
-            Discover Shots
+            Discover
           </Link>
           <Link href="/photographers" className="hover:text-oceanBlue transition-colors">
             Photographers

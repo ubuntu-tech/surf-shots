@@ -21,7 +21,7 @@ function SignUpButton({ onClick, className = '' }: { onClick: () => void, classN
         return () => document.removeEventListener('mousedown', handleClickOutside)
     }, [])
 
-    if (session?.user) {
+    if (session?.user && session?.user.role) {
         return (
             <div className={`relative ${className}`} ref={menuRef}>
                 <button 

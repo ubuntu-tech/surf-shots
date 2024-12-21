@@ -1,7 +1,7 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { GoogleSignInButton } from '../GoogleSignInButton'
-import { signIn, useSession } from 'next-auth/react'
+import { signIn } from 'next-auth/react'
 
 interface SignUpModalProps {
   isOpen: boolean

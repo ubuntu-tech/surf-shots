@@ -35,7 +35,7 @@ const RoleSelectionModal = ({ isOpen, onClose }: RoleSelectionModalProps) => {
               Choose Your Role
             </h2>
             <p className="text-slate font-secondary mt-1">
-              Tell us how you'll be using Snapline
+              Tell us how you&apos;ll be using Snapline
             </p>
           </div>
         </div>

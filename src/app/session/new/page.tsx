@@ -7,6 +7,13 @@ import { PlacesAutocomplete } from '@/components/common/PlacesAutocomplete';
 import { useLoadScript } from '@react-google-maps/api';
 import { Trash2 } from 'lucide-react';
 import { Gallery } from '@/components/common/Gallery';
+import Image from 'next/image';
+import { Calendar } from "@/components/ui/calendar"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { Button } from "@/components/ui/button"
+import { CalendarIcon } from "lucide-react"
+import { format } from "date-fns"
+import { cn } from "@/lib/utils"
 
 interface PhotoItem {
   id: string;
@@ -23,6 +30,7 @@ export default function NewSession() {
   const [loading, setLoading] = useState(false);
   const [sessionDate, setSessionDate] = useState('');
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [date, setDate] = useState<Date>()
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
@@ -113,7 +121,7 @@ export default function NewSession() {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label htmlFor="sessionName" className="block text-sm font-medium mb-1">
-            Session Name
+            Session Name (optional)
           </label>
           <input
             type="text"
@@ -123,6 +131,9 @@ export default function NewSession() {
             className="w-full p-2 border rounded-md"
             required
           />
+          <p className="text-sm text-gray-600 mt-1 italic">
+            If you don't want to add a custom name, we will use the pattern 'Place name - Date'
+          </p>
         </div>
 
         <div className="grid grid-cols-4 gap-4">
@@ -140,17 +151,34 @@ export default function NewSession() {
           </div>
 
           <div className="col-span-1">
-            <label htmlFor="sessionDate" className="block text-sm font-medium mb-1">
+            <label className="block text-sm font-medium mb-1">
               Session Date
             </label>
-            <input
-              type="date"
-              id="sessionDate"
-              value={sessionDate}
-              onChange={(e) => setSessionDate(e.target.value)}
-              className="w-full p-2 border rounded-md"
-              required
-            />
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant={"outline"}
+                  className={cn(
+                    "w-full justify-start text-left font-normal",
+                    !date && "text-muted-foreground"
+                  )}
+                >
+                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  {date ? format(date, "PPP") : <span>Pick a date</span>}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0" align="start">
+                <Calendar
+                  mode="single"
+                  selected={date}
+                  onSelect={(newDate) => {
+                    setDate(newDate);
+                    setSessionDate(newDate ? format(newDate, "yyyy-MM-dd") : "");
+                  }}
+                  initialFocus
+                />
+              </PopoverContent>
+            </Popover>
           </div>
         </div>
 
@@ -199,11 +227,12 @@ export default function NewSession() {
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 w-full">
                   {photos.map((photo) => (
                     <div key={photo.id} className="aspect-square relative group">
-                      <img
+                      <Image
                         src={photo.preview}
                         alt="Preview"
-                        onClick={() => setSelectedImage(photo.preview)}
-                        className="object-cover w-full h-full rounded-md cursor-pointer"
+                        width={200}
+                        height={200}
+                        className="object-cover rounded-lg"
                       />
                       <button
                         type="button"

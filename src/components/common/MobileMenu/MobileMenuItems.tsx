@@ -66,7 +66,7 @@ const MobileMenuItems = ({ session, onLoginClick, onMenuClose, isMenuOpen }: Mob
           href="/discover" 
           className="block px-4 py-3 text-slate hover:bg-seaFoam/20 hover:text-oceanBlue transition-colors font-secondary"
         >
-          Discover Shots
+          Discover
         </Link>
         <Link 
           href="/photographers" 

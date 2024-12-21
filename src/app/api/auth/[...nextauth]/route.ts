@@ -111,11 +111,11 @@ const handler = NextAuth({
                 return false
             }
         },
-        session: async ({ session, token }) => {
+        session: async ({ session }) => {
             const userProfile = await prisma.userProfile.findFirst({
                 where: {
                     user: {
-                        email: session.user?.email!
+                        email: session.user!.email!
                     }
                 },
                 include: {
