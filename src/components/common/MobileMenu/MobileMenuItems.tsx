@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { signOut } from "next-auth/react"
 import { Session } from 'next-auth'
 import { SignUpButton } from '@/components/SignUpButton'
+import { useEffect, useState } from 'react'
 
 interface MobileMenuItemsProps {
   session: Session | null
@@ -38,6 +39,20 @@ const LoggedInItems = () => {
 }
 
 const MobileMenuItems = ({ session, onLoginClick, onMenuClose, isMenuOpen }: MobileMenuItemsProps) => {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768) // 768px is Tailwind's md breakpoint
+    }
+    
+    checkMobile() // Initial check
+    window.addEventListener('resize', checkMobile)
+    
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  if (!isMobile) return null
   if (session?.user) return <LoggedInItems />
 
   return (

@@ -50,8 +50,6 @@ const authOptions = {
                     }
                 })
 
-                logger.info('authorize', user)
-
                 if (user) {
                     if (!user.password) {
                         logger.info('authorize', 'no password')
@@ -64,7 +62,6 @@ const authOptions = {
                         return user
                     }
                 } else if (!user) {
-                    logger.info('authorize', 'no user')
                     const hashedPassword = await bcrypt.hash(credentials.password, 10);
                     return await prisma.user.create({
                         data: {
@@ -113,6 +110,26 @@ const handler = NextAuth({
                 logger.info('signIn', 'error', error)
                 return false
             }
+        },
+        session: async ({ session, token }) => {
+            const userProfile = await prisma.userProfile.findFirst({
+                where: {
+                    user: {
+                        email: session.user?.email!
+                    }
+                },
+                include: {
+                    user: true
+                }
+            })
+
+            session.user = {
+                ...session.user,
+                id: userProfile?.user.id,
+                role: userProfile?.type,
+            }
+
+            return session
         }
     }
 })

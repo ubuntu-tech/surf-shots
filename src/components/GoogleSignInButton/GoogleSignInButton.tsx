@@ -1,9 +1,13 @@
 import { signIn } from "next-auth/react"
 
-function GoogleSignInButton() {
+interface GoogleSignInButtonProps {
+    onClick: () => void
+}
+
+function GoogleSignInButton({ onClick }: GoogleSignInButtonProps) {
     return (
         <button
-            onClick={() => signIn('google')}
+            onClick={onClick}
             type="button"
             className="w-full flex items-center justify-center gap-3 bg-white border border-gray-300 rounded-lg py-3 px-4 text-gray-700 font-medium hover:bg-gray-50 transition-colors focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >

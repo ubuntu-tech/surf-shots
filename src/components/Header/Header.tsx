@@ -1,18 +1,32 @@
 'use client'
 import Link from 'next/link'
 import { Logo } from '@/components/common/Logo'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { SignUpModal } from '../SignUpModal'
 import { useSession } from 'next-auth/react'
 import { MobileMenuItems } from '../common/MobileMenu'
 import { HeaderActions } from './HeaderActions'
 import { ProfileImage } from '../common/ProfileImage'
+import RoleSelectionModal from '../SignUpModal/RoleSelectionModal'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false)
   const { data: session } = useSession()
   const [variant, setVariant] = useState<'signup' | 'signin'>('signup')
+  const [isRoleSelectionModalOpen, setIsRoleSelectionModalOpen] = useState(false)
+
+  useEffect(() => {
+    if (session?.user && !session?.user.role) {
+      console.log('opening role selection modal')
+      setIsRoleSelectionModalOpen(true)
+    }
+  }, [session])
+
+  const handleRoleSubmit = (role: string) => {
+    console.log('role submitted', role)
+    setIsRoleSelectionModalOpen(false)
+  }
 
   return (
     <header className="fixed w-full bg-white shadow-sm sticky top-0 z-50 border-b border-seaFoam">
@@ -80,6 +94,11 @@ const Header = () => {
         isOpen={isSignUpModalOpen} 
         onClose={() => setIsSignUpModalOpen(false)} 
         variant={variant}
+      />
+            <RoleSelectionModal
+        isOpen={isRoleSelectionModalOpen}
+        onClose={() => setIsRoleSelectionModalOpen(false)}
+        onSubmit={handleRoleSubmit}
       />
     </header>
   )
