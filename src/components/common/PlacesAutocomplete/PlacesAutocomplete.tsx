@@ -39,7 +39,7 @@ export const PlacesAutocomplete: React.FC<PlacesAutocompleteProps> = ({
 
   return (
     <Combobox value={value} onChange={onChange}>
-      <div className="relative z-[100]">
+      <div className="relative">
         <div className={`relative ${className}`}>
           <Combobox.Input
             className={`

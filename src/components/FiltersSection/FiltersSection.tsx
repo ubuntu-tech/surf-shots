@@ -76,7 +76,7 @@ const FiltersSection = () => {
   }
 
   return (
-    <section className="border-b border-seaFoam sticky top-16 bg-white z-40">
+    <section className="border-b border-seaFoam sticky top-16 bg-white">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-4">
           <div className="flex items-center gap-4">
