@@ -132,7 +132,7 @@ export default function NewSession() {
             required
           />
           <p className="text-sm text-gray-600 mt-1 italic">
-            If you don't want to add a custom name, we will use the pattern 'Place name - Date'
+            If you don&apos;t want to add a custom name, we will use the pattern &apos;Place name - Date&apos;
           </p>
         </div>
 
