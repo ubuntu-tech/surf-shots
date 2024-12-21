@@ -35,7 +35,7 @@ export default function ProfilePage() {
 
   useEffect(() => {
     if (status === 'unauthenticated') {
-      router.push('/login')
+      router.push('/')
     } else if (session?.user) {
       setProfile({
         name: session.user.name || '',

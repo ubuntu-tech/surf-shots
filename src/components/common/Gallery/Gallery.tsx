@@ -1,5 +1,6 @@
 import Image from 'next/image'
-import { useCallback, TouchEvent, useState } from 'react'
+import { useCallback, TouchEvent, useState, useEffect } from 'react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 type GalleryProps = {
     selectedImage: string | null
@@ -36,6 +37,44 @@ const Gallery = ({ selectedImage, images, onClose, onSelect }: GalleryProps) => 
         }
     }, [touchStart, touchEnd, images, selectedImage, onSelect])
 
+    const currentIndex = selectedImage ? images.indexOf(selectedImage) : -1
+    const hasNext = currentIndex < images.length - 1
+    const hasPrev = currentIndex > 0
+
+    const handleNext = () => {
+        if (hasNext) {
+            onSelect(images[currentIndex + 1])
+        }
+    }
+
+    const handlePrev = () => {
+        if (hasPrev) {
+            onSelect(images[currentIndex - 1])
+        }
+    }
+
+    // Add keyboard navigation
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (selectedImage) {
+                switch (e.key) {
+                    case 'ArrowRight':
+                        if (hasNext) handleNext();
+                        break;
+                    case 'ArrowLeft':
+                        if (hasPrev) handlePrev();
+                        break;
+                    case 'Escape':
+                        onClose();
+                        break;
+                }
+            }
+        }
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [selectedImage, hasNext, hasPrev, handleNext, handlePrev, onClose]);
+
     if (!selectedImage) return null
 
     return (
@@ -47,6 +86,24 @@ const Gallery = ({ selectedImage, images, onClose, onSelect }: GalleryProps) => 
             >
                 ✕
             </button>
+
+            {/* Navigation arrows */}
+            {hasPrev && (
+                <button
+                    className="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-black/50 rounded-full text-white hover:bg-black/70 transition-colors"
+                    onClick={handlePrev}
+                >
+                    <ChevronLeft size={24} />
+                </button>
+            )}
+            {hasNext && (
+                <button
+                    className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-black/50 rounded-full text-white hover:bg-black/70 transition-colors"
+                    onClick={handleNext}
+                >
+                    <ChevronRight size={24} />
+                </button>
+            )}
 
             {/* Main image */}
             <div 

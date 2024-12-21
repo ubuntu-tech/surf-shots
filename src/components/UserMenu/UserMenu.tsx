@@ -1,10 +1,12 @@
 import { signOut } from "next-auth/react"
-
+import { useSession } from "next-auth/react"
 interface UserMenuProps {
     isOpen: boolean;
 }
 
 function UserMenu({ isOpen }: UserMenuProps) {
+    const { data: session } = useSession()
+
     if (!isOpen) return null;
     
     return (
@@ -15,6 +17,11 @@ function UserMenu({ isOpen }: UserMenuProps) {
             <a href="/my-photos" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                 My Photos
             </a>
+            {session?.user?.role === 'photographer' && (
+                <a href="/session/new" className="block px-4 py-2 text-sm text-white bg-sunsetGold hover:bg-sunsetGold/90">
+                    New Session
+                </a>
+            )}
             <hr className="my-1 border-gray-200" />
             <button 
                 onClick={() => signOut()}
