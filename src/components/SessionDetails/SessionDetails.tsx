@@ -4,6 +4,8 @@ import useSWR from 'swr'
 import Image from 'next/image'
 import { useState } from 'react'
 import { Gallery } from '../common/Gallery'
+import { useCart } from '@/context/CartContext'
+
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
 type SessionDetailsProps = {
@@ -54,7 +56,12 @@ const SessionDetails = ({ id }: SessionDetailsProps) => {
                 </div>
             </div>
 
-            <Gallery images={data?.session.photos || []} selectedImage={selectedImage} onClose={() => setSelectedImage(null)} onSelect={setSelectedImage} />
+            <Gallery 
+                images={data?.session.photos || []} 
+                selectedImage={selectedImage} 
+                onClose={() => setSelectedImage(null)} 
+                onSelect={setSelectedImage}
+            />
         </>
     )
 }

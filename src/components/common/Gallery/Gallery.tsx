@@ -80,7 +80,7 @@ const Gallery = ({ selectedImage, images, onClose, onSelect }: GalleryProps) => 
     if (!selectedImage) return null
 
     return (
-        <div className="fixed inset-y-[10%] inset-x-[10%] bg-white/95 z-50 flex flex-col">
+        <div className="fixed inset-0 bg-white/95 z-50 flex flex-col">
             {/* Close button */}
             <button 
                 className="absolute top-4 right-4 text-gray-800 text-xl p-2"
@@ -92,7 +92,7 @@ const Gallery = ({ selectedImage, images, onClose, onSelect }: GalleryProps) => 
             {/* Navigation arrows */}
             {hasPrev && (
                 <button
-                    className="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-gray-100 rounded-full text-gray-800 hover:bg-gray-200 transition-colors"
+                    className="hidden md:block absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-gray-100 rounded-full text-gray-800 hover:bg-gray-200 transition-colors"
                     onClick={handlePrev}
                 >
                     <ChevronLeft size={24} />
@@ -100,7 +100,7 @@ const Gallery = ({ selectedImage, images, onClose, onSelect }: GalleryProps) => 
             )}
             {hasNext && (
                 <button
-                    className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-gray-100 rounded-full text-gray-800 hover:bg-gray-200 transition-colors"
+                    className="hidden md:block absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-gray-100 rounded-full text-gray-800 hover:bg-gray-200 transition-colors"
                     onClick={handleNext}
                 >
                     <ChevronRight size={24} />
@@ -110,9 +110,18 @@ const Gallery = ({ selectedImage, images, onClose, onSelect }: GalleryProps) => 
             {/* Main image */}
             <div 
                 className="flex-1 flex flex-col items-center justify-center p-4 max-w-6xl mx-auto w-full"
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleTouchEnd}
+                onTouchStart={(e) => {
+                    if ((e.target as HTMLElement).tagName === 'BUTTON') return;
+                    handleTouchStart(e);
+                }}
+                onTouchMove={(e) => {
+                    if ((e.target as HTMLElement).tagName === 'BUTTON') return;
+                    handleTouchMove(e);
+                }}
+                onTouchEnd={(e) => {
+                    if ((e.target as HTMLElement).tagName === 'BUTTON') return;
+                    handleTouchEnd();
+                }}
             >
                 <Image
                     src={selectedImage}
