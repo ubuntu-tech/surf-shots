@@ -8,6 +8,7 @@ import { MobileMenuItems } from '../common/MobileMenu'
 import { HeaderActions } from './HeaderActions'
 import { ProfileImage } from '../common/ProfileImage'
 import RoleSelectionModal from '../SignUpModal/RoleSelectionModal'
+import { CartButton } from '../common/CartButton'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -15,6 +16,7 @@ const Header = () => {
   const { data: session } = useSession()
   const [variant, setVariant] = useState<'signup' | 'signin'>('signup')
   const [isRoleSelectionModalOpen, setIsRoleSelectionModalOpen] = useState(false)
+  const [menuPosition, setMenuPosition] = useState<{ top: number; right: number } | undefined>()
 
   useEffect(() => {
     if (session?.user && !session?.user.role) {
@@ -26,6 +28,15 @@ const Header = () => {
   const handleRoleSubmit = (role: string) => {
     console.log('role submitted', role)
     setIsRoleSelectionModalOpen(false)
+  }
+
+  const handleProfileClick = (event: React.MouseEvent<HTMLElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect()
+    setMenuPosition({
+      top: rect.bottom,
+      right: window.innerWidth - rect.right
+    })
+    setIsMenuOpen(!isMenuOpen)
   }
 
   return (
@@ -68,7 +79,7 @@ const Header = () => {
           
           {session ? (
             <ProfileImage 
-              onClick={() => setIsMenuOpen(!isMenuOpen)} 
+              onClick={handleProfileClick}
               className="border-2 border-seaFoam hover:border-oceanBlue transition-colors"
             />
           ) : (
@@ -81,6 +92,7 @@ const Header = () => {
               </svg>
             </button>
           )}
+          <CartButton />
         </div>
 
         <MobileMenuItems 
@@ -88,6 +100,7 @@ const Header = () => {
           isMenuOpen={isMenuOpen}
           onLoginClick={() => setIsSignUpModalOpen(true)}
           onMenuClose={() => setIsMenuOpen(false)}
+          menuPosition={menuPosition}
         />
       </nav>
       <SignUpModal

@@ -79,32 +79,29 @@ export default function ProfilePage() {
       <h1 className="text-2xl font-bold mb-6">Profile</h1>
       
       {profile && (
-        <div className="bg-white shadow rounded-lg p-6">
+        <div className="bg-white rounded-lg p-6">
           <form onSubmit={handleSubmit} className="space-y-4">
                         
           <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Profile Image
-              </label>
               <div className="relative mt-2">
                 <button
                   type="button"
                   onClick={() => document.getElementById('profile-upload')?.click()}
-                  className="relative w-20 h-16 rounded-full overflow-hidden group hover:opacity-90 focus:outline-none"
+                  className="relative w-20 h-20 rounded-full overflow-hidden group hover:opacity-90 focus:outline-none"
                 >
                   {profile.imagePreview ? (
                     <Image
                       src={profile.imagePreview}
                       alt="Profile preview"
                       fill
-                      className="object-cover"
+                      className="object-cover rounded-full"
                     />
                   ) : (
                     <Image
                       src={profile.image || '/profile-avatar.svg'}
                       alt="Default avatar"
                       fill
-                      className="object-cover"
+                      className="object-cover rounded-full"
                     />
                   )}
                   <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
@@ -159,7 +156,7 @@ export default function ProfilePage() {
                     value={profile.location || ''}
                     onChange={(address) => setProfile({ ...profile, location: address })}
                     className={`
-                      peer w-full px-4 py-3 rounded-md border border-gray-300
+                      peer w-full rounded-md
                       bg-white text-gray-900 text-base
                       transition-all duration-200
                       focus:outline-none focus:ring-2

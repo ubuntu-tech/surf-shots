@@ -43,12 +43,14 @@ function SignUpButton({ onClick, className = '' }: { onClick: () => void, classN
     }
 
     return (
-        <button 
-            onClick={onClick}
-            className={`px-6 py-2 bg-sunsetGold text-white hover:bg-sunsetGold/90 font-primary font-semibold rounded-lg transition-all duration-200 hover:shadow-md ${className}`}
+        <>
+            <button 
+                onClick={onClick}
+                className={`px-6 py-2 bg-sunsetGold text-white hover:bg-sunsetGold/90 font-primary font-semibold rounded-lg transition-all duration-200 hover:shadow-md ${className}`}
         >
-            Join the Lineup
-        </button>
+                Join the Lineup
+            </button>
+        </>
     )
 }
 

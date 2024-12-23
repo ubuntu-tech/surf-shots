@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { useCallback, TouchEvent, useState, useEffect } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { useCart } from '@/context/CartContext'
 
 type GalleryProps = {
     selectedImage: string | null
@@ -10,6 +11,7 @@ type GalleryProps = {
 }
 
 const Gallery = ({ selectedImage, images, onClose, onSelect }: GalleryProps) => {
+    const { addToCart, isInCart } = useCart()
     const [touchStart, setTouchStart] = useState<number>(0)
     const [touchEnd, setTouchEnd] = useState<number>(0)
 
@@ -78,10 +80,10 @@ const Gallery = ({ selectedImage, images, onClose, onSelect }: GalleryProps) => 
     if (!selectedImage) return null
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex flex-col">
+        <div className="fixed inset-y-[10%] inset-x-[10%] bg-white/95 z-50 flex flex-col">
             {/* Close button */}
             <button 
-                className="absolute top-4 right-4 text-white text-xl p-2"
+                className="absolute top-4 right-4 text-gray-800 text-xl p-2"
                 onClick={onClose}
             >
                 ✕
@@ -90,7 +92,7 @@ const Gallery = ({ selectedImage, images, onClose, onSelect }: GalleryProps) => 
             {/* Navigation arrows */}
             {hasPrev && (
                 <button
-                    className="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-black/50 rounded-full text-white hover:bg-black/70 transition-colors"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-gray-100 rounded-full text-gray-800 hover:bg-gray-200 transition-colors"
                     onClick={handlePrev}
                 >
                     <ChevronLeft size={24} />
@@ -98,7 +100,7 @@ const Gallery = ({ selectedImage, images, onClose, onSelect }: GalleryProps) => 
             )}
             {hasNext && (
                 <button
-                    className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-black/50 rounded-full text-white hover:bg-black/70 transition-colors"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-gray-100 rounded-full text-gray-800 hover:bg-gray-200 transition-colors"
                     onClick={handleNext}
                 >
                     <ChevronRight size={24} />
@@ -107,7 +109,7 @@ const Gallery = ({ selectedImage, images, onClose, onSelect }: GalleryProps) => 
 
             {/* Main image */}
             <div 
-                className="flex-1 flex items-center justify-center p-4"
+                className="flex-1 flex flex-col items-center justify-center p-4 max-w-6xl mx-auto w-full"
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
@@ -115,15 +117,44 @@ const Gallery = ({ selectedImage, images, onClose, onSelect }: GalleryProps) => 
                 <Image
                     src={selectedImage}
                     alt="Selected photo"
-                    className="max-h-[calc(100vh-150px)] object-contain"
-                    width={1920}
-                    height={1080}
+                    className="max-h-[calc(100vh-200px)] object-contain"
+                    width={800}
+                    height={600}
                 />
+                <div className="flex gap-4 mt-4">
+                    <button
+                        className={`px-4 py-2 ${
+                            isInCart(selectedImage)
+                                ? 'bg-gray-600 hover:bg-gray-700'
+                                : 'bg-blue-600 hover:bg-blue-700'
+                        } text-white rounded-md transition-colors`}
+                        onClick={() => {
+                            if (selectedImage && !isInCart(selectedImage)) {
+                                addToCart({
+                                    id: selectedImage,
+                                    name: 'Test',
+                                    price: 2,
+                                    image: selectedImage,
+                                    photographerId: '1',
+                                    sessionId: '1'
+                                })
+                            }
+                        }}
+                    >
+                        {isInCart(selectedImage) ? 'In Cart' : 'Add to Cart ($2)'}
+                    </button>
+                    <button
+                        className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors"
+                        onClick={() => {/* Add your marking logic here */}}
+                    >
+                        It&apos;s Me
+                    </button>
+                </div>
             </div>
 
             {/* Thumbnails */}
-            <div className="h-[120px] bg-black bg-opacity-50">
-                <div className="flex overflow-x-auto gap-2 p-4">
+            <div className="h-[120px] bg-gray-100">
+                <div className="flex overflow-x-auto gap-2 p-4 max-w-6xl mx-auto">
                     {images.map((photo, index) => (
                         <div 
                             key={index}
